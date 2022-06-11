@@ -1,6 +1,28 @@
 import pygame
-from pygame.locals import display
-import json
+from pygame.locals import *
+
+from utils.Json import JsonHandle
+
+DATA_JSON = JsonHandle('settings.json').getData()
 
 class Window():
-    screen = display.set_mode()
+
+    def __init__(self) -> None:
+        self.screen = self.initScreen()
+        self.screen.fill(eval(DATA_JSON['colors']['red']))
+        self.setName(DATA_JSON['windowName'])
+        pass
+
+    def initScreen(self) -> None:
+        return pygame.display.set_mode((DATA_JSON['windowSize'][0],DATA_JSON['windowSize'][1]))
+
+    def setName(self, name: str) -> None:
+        pygame.display.set_caption(name)
+
+    def checkingToClose(self) -> None:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+    
+    def plotSurface(self, surface: pygame.Surface, location: tuple) -> None:
+        self.screen.blit(surface, location)

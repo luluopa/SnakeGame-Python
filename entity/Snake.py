@@ -35,7 +35,6 @@ class Snake():
     positionSnake_x = 50
     positionSnake_y = 50
 
-    snakeInitialTam = 3
     direction = 'UP'
 
     snakeBody = list([[positionSnake_x, positionSnake_y],
@@ -46,15 +45,17 @@ class Snake():
         self.direction = newDirection
 
     def updateHead(self) -> None:
+        print(dictChoicesDirection[self.direction])
         self.snakeBody[0] = dictChoicesDirection[self.direction](self.snakeBody[0][0], self.snakeBody[0][1])
  
     def updateBody(self) -> None:
-        for snakepart in reversed(range(len(self.snakeBody)-1)):
-            self.snakeBody[snakepart] = [self.snakeBody[snakepart+1][0], self.snakeBody[snakepart+1][1]]
+        for snakepart in reversed(range(len(self.snakeBody))):
+            print(snakepart)
+            self.snakeBody[snakepart] = [self.snakeBody[snakepart-1][0], self.snakeBody[snakepart-1][1]]
 
     def updateSnake(self) -> None:
-        self.updateHead()
         self.updateBody()
+        self.updateHead()
 
     def snakeEaten(self):
         self.snakeBody.append([0,0])
