@@ -1,5 +1,5 @@
 import json
-from snakePython.Exceptions.ExceptionsHandle import JsonNotFoundException
+from snakePython.exceptions.ExceptionsHandle import JsonNotFoundException
 
 class JsonHandle():
     self.file = None

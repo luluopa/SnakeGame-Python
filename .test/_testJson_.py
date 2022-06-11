@@ -1,6 +1,6 @@
 import pytest
 from Json import JsonHandle
-from snakePython.Exceptions.ExceptionsHandle import JsonNotFoundException
+from snakePython.exceptions.ExceptionsHandle import JsonNotFoundException
 
 def testJsonHandleFileOpenException():
     with pytest.raises(JsonNotFoundException):
