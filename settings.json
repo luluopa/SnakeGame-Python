@@ -1,11 +1,12 @@
 {
-    "colors":[
+    "colors":
         {
-            "black":"0,0,0",
-            "red":"150,150,150",
-            "white":"255,255,255"
+            "black":"(0,0,0)",
+            "red":"(255,0,0)",
+            "white":"(255,255,255)"
         }
-    ],
+    ,
     "pixelSize":10,
-    "windowSize":["600","600"]
+    "windowSize":[600,600],
+    "windowName":"Snake Game"
 }
