@@ -1,5 +1,15 @@
-from pyparsing import dict_of
-from . import pixelTam
+import sys, os
+from pathlib import Path
+
+#importing path of utils module
+BASE_DIR = Path(__file__).resolve().parent.parent
+UTILS_DIR = os.path.join(BASE_DIR, 'utils')
+sys.path.append(UTILS_DIR)
+
+from Json import JsonHandle
+
+JSON_DIR = os.path.join(BASE_DIR, 'settings.json')
+pixelTam = JsonHandle(JSON_DIR).getData()['pixelSize']
 
 def upChoice(x,y) -> list:
     return list([x,y+pixelTam])

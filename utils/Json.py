@@ -1,17 +1,27 @@
+import sys, os
+from pathlib import Path
+
+#importing path of exceptions module
+BASE_DIR = Path(__file__).resolve().parent.parent
+EXCEPTIONS_DIR = os.path.join(BASE_DIR, 'exceptions')
+sys.path.append(EXCEPTIONS_DIR)
+
 import json
-from snakePython.exceptions.ExceptionsHandle import JsonNotFoundException
+from ExceptionsHandle import JsonNotFoundException
 
 class JsonHandle():
-    self.file = None
-    self.data = dict()
+    file = None
+    data = dict()
 
     def __init__(self, jsonName: str) -> None:
         self.jsonName = jsonName
 
+        self.readData()
+
     def openJsonFile(self) -> None:
         try:
             self.file = open(self.jsonName)
-        except JsonNotFoundException:
+        except:
             raise JsonNotFoundException()
 
     def closeJsonFile(self) -> None:
@@ -21,6 +31,7 @@ class JsonHandle():
     def readData(self) -> None:
         self.openJsonFile()
         self.data = json.load(self.file)
+        self.closeJsonFile()
 
     def getData(self) -> dict:
         return self.data

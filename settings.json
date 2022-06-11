@@ -6,6 +6,6 @@
             "white":"255,255,255"
         }
     ],
-    "pixelTam":10,
-    "window_tam":["600","600"]
+    "pixelSize":10,
+    "windowSize":["600","600"]
 }
