@@ -1,5 +1,6 @@
 import pygame
 from pygame.locals import *
+from entity.Snake import Snake
 
 from utils.Json import JsonHandle
 
@@ -26,3 +27,7 @@ class Window():
     
     def plotSurface(self, surface: pygame.Surface, location: tuple) -> None:
         self.screen.blit(surface, location)
+
+    def plotSnake(self, surface: pygame.Surface, snake: Snake) -> None:
+        for location in snake.snakeBody:
+            self.plotSurface(surface, (location[0],location[1]))

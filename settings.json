@@ -6,7 +6,7 @@
             "white":"(255,255,255)"
         }
     ,
-    "pixelSize":10,
+    "pixelSize":20,
     "windowSize":[600,600],
     "windowName":"Snake Game"
 }
