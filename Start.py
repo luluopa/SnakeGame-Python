@@ -1,7 +1,10 @@
 import pygame
 from pygame.locals import *
 from Window import Window
+from entity.Apple import Apple
+from entity.Player import Player
 from entity.Snake import Snake
+from surfaces.AppleSurface import AppleSurface
 from surfaces.SnakeSurface import SnakeSurface
 
 RUNNING = True
@@ -12,23 +15,30 @@ def main():
 
     snake = Snake()
     snakeSurface = SnakeSurface()
+
+    apple = Apple()
+    appleSurface = AppleSurface()
+
+    player = Player()
     time = pygame.time.Clock()
 
-    sufaceteste = pygame.Surface((10,10))
-    sufaceteste.fill((255,0,0))
-
     while RUNNING:
-        time.tick(60)
+        time.tick(15)
         window.checkingToClose()
 
         window.screen.fill((0,0,0))
 
-        for position in snake.snakeBody:
-            window.plotSurface(snakeSurface.snakeSurface, (position[0],position[1]))
+        player.updateEventKey(snake)
 
-        window.plotSurface(sufaceteste, (20,20))
+        window.plotSnake(snakeSurface.snakeSurface, snake)
+        window.plotSurface(appleSurface.appleSurface, apple.getTupleAppleLocation())
 
+        snake.checkHit(apple)
         snake.updateSnake()
+        snake.ifOutsideOfWindow()
+
+        if snake.checkIfLose():
+            break
 
         pygame.display.update()
 
